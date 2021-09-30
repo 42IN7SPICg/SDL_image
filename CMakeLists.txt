@@ -5,7 +5,11 @@ if (NOT ANDROID AND NOT (TARGET SDL2 OR TARGET SDL2-static))
 	find_package(SDL2 REQUIRED)
 endif()
 
-option(SUPPORT_JPG "Support loading JPEG images" OFF)
+if (NOT WINDOWS)
+	add_compile_options(-fPIC)
+endif()
+
+option(SUPPORT_JPG "Support loading JPEG images" ON)
 option(SUPPORT_PNG "Support loading PNG images" ON)
 option(SUPPORT_WEBP "Support loading WEBP images" OFF)
 option(BUILD_SHOWIMAGE "Build the showimage sample program" OFF)
